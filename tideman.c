@@ -17,22 +17,26 @@ int main(int argc, string argv[])
                 for (int j=0;j<contestants;j++)
                 {
                     printf("Rank %d: ",j+1);
-                    vote[i][j]=get_string(" ");
-                    for (int k=1;k<=contestants;k++)
-                    {
-                        if(strcmp(vote[i][j],argv[k])==0)
-                             count[k-1]=(count[k-1]+j);
-                       
-                    }
+                    vote[i][j]=get_string(" "); 
+                    int f=0;                                    
                     for(int m=0;m<j;m++)
                     {
-                        if (vote[i][j]==vote[i][m])
+                        if (strcmp(vote[i][j],vote[i][m])==0)
                         {
-                            printf("Invalid Vote!");
+                            printf("Invalid Vote!\n");
                             return 1;
                         }
-                    }
-                    
+                    }                                         
+                        for (int k=1;k<=contestants;k++)
+                            {
+                                if(strcmp(vote[i][j],argv[k])==0)
+                                    {count[k-1]=(count[k-1]+j);
+                                    f=1;}
+                                
+                            }
+                            if (f==0)
+                            printf("Invalid Vote! \n");
+                       
                 }
                 printf("\n");
 
@@ -55,8 +59,9 @@ int main(int argc, string argv[])
     }
     else
     {
-        printf("Enter correct contestant! ");
+        printf("Enter correct contestant! \n");
         return 1;
     }   
     return 0; 
 }
+
